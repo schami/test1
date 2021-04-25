@@ -1,0 +1,21 @@
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+    
+    - name: FTP Deployment
+      uses: airvzxf/ftp-deployment-action@latest
+      with:
+        # FTP Server.
+        server: ftp.travelerarc.com
+        # FTP User.
+        user: sam@felixica.com
+        # FTP Password.
+        password: ${{ secrets.mocha_ftp_password }}
+        # Remote directory.
+        remote_dir: ${{ secrets.mocha_proj_path }}
